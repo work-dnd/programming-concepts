@@ -1,0 +1,110 @@
+=============== The Cherno : member initializer list in constructor ===============
+
+--- Example:
+
+#include<iostream>
+#include<string>
+
+
+class Entity {
+
+private: 
+    std::string m_Name;
+    int x;
+    
+public:
+    // default constructor 
+    Entity()
+        : m_Name("Cherno"), x(0) {};  >>>> Must be in order of the variables declared above
+        
+   // with variable
+   Entity(const std::string& name)
+       : m_Name(name), x(0) {};
+};
+
+
+int main(){
+
+    Entity e0; // instantiated with the default constructor
+    
+    Entity e1; // instantiated with the variable constructor
+    std::cin.get();
+}
+
+>>>>>>>> This type of constructor intialization coding style has a functional performance importance. This style saves performance by not allowing the default constructor to create one object,throw that away and the parameter constructor to create another object... 
+
+E.g.
+
+ #include<iostream>
+class Example {
+
+    Example(){
+        std::cout << "Created" << std::endl;
+    }
+
+    Example(int x){
+        std::cout << "Created with" << x << std::endl;
+    }
+};
+
+class Entity {
+
+private: 
+    std::string m_Name;
+    Example m_Example; >>> will call the default constructor
+public:
+    // default constructor 
+    Entity()
+        : m_Name("Cherno") {
+            m_Example = Example(8); >>> param constructor 
+        };  >>>> Must be in order of the variables declared above
+        
+   // with variable
+   Entity(const std::string& name)
+       : m_Name(name), x(0) {};
+};
+
+
+int main(){
+
+    Entity e0; // instantiated with the default constructor
+    
+    std::cin.get();
+}  
+
+Output: 
+Created  >> default Example class constructor
+Created with 8   >> parameter constructor again
+
+>>> which means the first object of Example class is created and wasted then second object with parameter constructor has been created again which can be a serious performance issue
+
+
+
+now this will not be the case if---
+
+class Entity {
+
+private: 
+    std::string m_Name;
+    Example m_Example; >>> will no more call the default Example class constructor
+public:
+    // default constructor 
+    Entity()
+        : m_Name("Cherno"), m_Example(8) {};  >>>> Must be in order of the variables declared above
+        
+   // with variable
+   Entity(const std::string& name)
+       : m_Name(name), x(0) {};
+};
+
+
+int main(){
+
+    Entity e0; // instantiated with the default constructor
+    
+    std::cin.get();
+}  
+
+Output: 
+Created with 8   >> parameter constructor again
+

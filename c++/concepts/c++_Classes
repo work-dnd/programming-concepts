@@ -1,0 +1,29 @@
+=========== The Cherno : Classes in C++ ===========
+
+- By default, classes make everything private, so need to mention public and private data members
+
+- Functions inside classes are called Methods
+
+- structs are by default public, for private data member and functionalities, structs have to mention the attribute called priavte 
+
+- C++ have structs to maintain backward-compatability with C
+
+- So, Cherno uses structs when he wants to group a number of data
+e.g. - mathematical vector class
+
+struct Vec2
+{
+    float x, y;
+    
+    void Add(const Vec2& other)
+    {
+      x += other.x;
+      y += other.y;
+    }
+
+};
+
+- Cherno will never use structs for inheritence... It should always be a class
+
+
+ 

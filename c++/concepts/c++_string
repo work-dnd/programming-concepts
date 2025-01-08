@@ -1,0 +1,34 @@
+============== The Cherno : String Literals ===========
+
+- char* name = "Cherno";
+this is const and can't be modified as 
+name[2 ] = 'a'; ---XXXX
+
+-- in debug mode --> write access violation error
+-- in release mode --  will be compiled, but won't modify it as second line of code will be removed
+
+
+- in order to modify, declare it as a char array-->
+char name[] = "cherno";
+now, name[2] = 'a'; --- POSSIBLE
+
+- different types of string types
+--- const wchar_t* name = L"Cherno";  ### that L prefix indicates compiler it is wide char
+--- here compiler would decide if each of the wide character would be off 2 bytes or 4 bytes
+
+--- to make sure each char is of 2 bytes
+const char16_t* name = u"Cherno";
+
+--- for each char to be of 4 bytes
+const char32_t* name = U"Cherno";
+
+
+--- String literals -- TO be contd. from the video
+-- string literals are ALWAYS stored in READ-ONLY memory
+
+
+
+
+
+
+

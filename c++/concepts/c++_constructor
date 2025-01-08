@@ -1,0 +1,25 @@
+=========== The Cherno: Constructor ===============
+
+- Constructors are special methods of a class that are called every time the class is initialized
+
+- Constructors are used to initialize data members
+
+- Member initialization list 
+
+#include<iostream>
+#include<string>
+
+class Entity{
+private:
+    std::string m_Name;
+    int score;
+    
+public:
+    Entity
+        :  m_Name("Unknown"), m_score(0) {};
+};
+
+- Important : the members are to initialized in the same order as they are declared (in this case string first and then int)
+
+- Why to use member initialization always??
+There is indeed a functional difference of not creating multiple instances where each one will overwrite the previous one thereby wasting performance. (example is elaborated in the video as well as in member_initalizer_in_constuctor doc here)

@@ -1,0 +1,34 @@
+============== The Cherno : C++ New Keyword ============
+
+- new is an operator 
+
+- new returns a pointer to the memory address it has allocated ON THE HEAP for the target datatype
+
+- There is a free list in C++ which has the information about all the free bytes of memory. The new operator has access to that list and 
+finds contiguous blocks of memory it has to allocate
+
+- for integer --> int* b = new int; // 4 bytes
+- for array --> int* b = new int[5]; // 20 bytes
+
+- for string --> 
+
+- for class (let's say Entity is the class) --> Entity* e = new Entity; // for single allocation of the class whatever the memory is required
+- for class array --> Entity* e = new Entity[5]; // 5 contiguous blocks of Entity class will be allocated
+
+**** Important :  In the background new is nothing but calling malloc like --> Entity* e = (Entity*)malloc(sizeof(Entity));
+However, new also CALLS THE DEFAULT CONSTUCTOR of the class --- That's the difference 
+
+
+--- Another thing new operator supports is the placement of memory --> FUTURE VIDEO
+
+
+-- If using new operator, we must also use delete operator to free the memory at the end of code execution.
+-- for integer --> delete b;
+-- for integer array --> delete[] b;
+-- for class --> delete e;
+
+**** delete operator calls the C funtion free(), and also CALLS THE DESTRUCTOR
+
+
+-- We have to call delete manually so that the allocated memory block can be freed and be listed back to the free list for further use
+-- But there are strategies in C++ to automate this process -- simple strategies like scope-based pointers and advances strategies like reference counter	

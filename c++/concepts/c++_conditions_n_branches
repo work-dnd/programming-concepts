@@ -1,0 +1,15 @@
+--------- The Cherno : If-else ---------------
+
+1. Use breakpoint --> right click ---> go to disassemby to check assembly codes (this is in debug mode, in release mode, however, compiler can change codes for optimization so be careful)
+
+2. if(x) --> this checks if x not equals to zero
+
+3. In C++, else if is no keyword. It is basically 
+if()
+{} 
+else {
+if{}
+} --> Just combined together
+
+
+

@@ -1,0 +1,58 @@
+==================== The Cherno : Mutable keyword =============
+
+- Mutable with the context of classes ---
+--- In classes if there is a const method then it is not possible to change any variable inside this method.
+
+--- But if it is absolutely required to have some variable to be changed such as for debugging purposes like in the following example where we just wanna know how many times the method is getting called, we have to use a variable with mutable keyword.
+
+#include<iostream>
+
+class Entity{
+
+   private:
+       std::string m_Name;
+       >>>> mutable int m_DebugCount;
+       
+   public:
+       const std::string& GetName() const{
+           m_DebugCount++;  --- for this to work inside const method it has to declared mutable
+           return m_Name;
+       }
+};
+
+
+int main(){
+    Entity e;
+    e.GetName(); --- without mutable, we will get error here
+    
+    std::cin.get();
+
+}
+
+=======================================================
+
+- Mutable in the context of lambda function
+
+--- If we wanna pass any variable "by value" inside the lambda function we will get an error when we try to modify that variable inside the lamda function. In that case, we can declare the lambda function to be mutable
+
+int main(){
+
+    int x = 8;
+    
+    // lambda function
+    auto f = [=]() mutable { 
+        x++; >>>>> error unless function marked as mutable
+        std::cout << x << std::endl;
+    };
+    
+    f();
+        
+    // x = 8 still, it gets incremented only inside lambda function coz it is passed as 
+    // value [=], not as reference [&] or [&x]
+    
+    std::cin.get();
+        
+        
+} 
+
+

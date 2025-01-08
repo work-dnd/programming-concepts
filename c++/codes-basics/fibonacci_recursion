@@ -1,0 +1,21 @@
+============= fibonacci recursion
+
+#include <iostream>
+
+int fibonacci(const int& len)
+{
+    if(len<=1)
+        return len;
+        
+   return fibonacci(len-1) + fibonacci(len-2); // nth number
+    
+}
+
+
+int main()
+{
+    int len = 7;
+    for(int i=0;i<len;i++)
+        std::cout <<  fibonacci(i) << " ";
+    return 0;
+}

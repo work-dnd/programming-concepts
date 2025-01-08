@@ -1,0 +1,102 @@
+============= The Cherno : Static keyword ==========
+
+- Static keyword has two meanings based on the context i.e. declaration outside of a class or a struct or declaration inside the class or struct
+
+for translation units:
+==================================
+- If we are declaring a static variable e.g.
+
+static s_variable = 10; outside of a class
+
+in a translation unit say, static.cpp as global; this variable is linked only to this translation unit. If the same variable is also declared in main.cpp as s_variable = 5; (global); after compilation the linker will see s_variable as 5 and not 10 from static.cpp. However, if we remove static keyword, we will get linker error for two same variables in two different translation units.
+
+- Thus, with static keyword we can make some variable or a function kind of private to that translation unit
+
+
+declaring static inside a scope (function) ---> local static
+=========================================
+
+void function()
+{
+    static i = 0;
+    i++;
+    std::cout << i << std::endl;
+}
+
+int main()
+{
+    function();
+    function();
+    function();
+    
+    std::cin.get();
+}
+
+- this will essentially print = 1, 2, 3  --> which means static has extended the lifetime of the variable i forever
+- without static, the print would return = 1,1,1 ---> obviously i would be initialized to zero, everytime the function gets called
+
+-- this strategy is very useful for defining singleton class as well amongst its other uses
+
+
+-- in case of singleton class which only has one instance throughout the lifetime, the declaration of the instance becomes cleaner with scoped static variable declaration
+
+class SingletonClass
+{
+public:
+    // delete copy constructor so that instance does not get copied as well (check line no 70-74)
+    SingletonClass(const SingleClass&) = delete;	
+    
+    static SingletonClass& get()
+    {
+        static SingletonClass instance; // not s_instance, since not a data member
+        return instance;
+    }
+    
+    void printHello()
+    {
+    	std::cout << "Hello from Singleton" << std::endl;
+    }
+}; 
+
+int main()
+{
+    
+    SingletonClass::get().printHello();
+    
+    // also this is possible
+    SingletonClass& instance = SingletonClass::get(); // as just a reference alias is getting created not COPIED
+    instance.printHello();
+    
+    // however the below MUST NOT be allowed XXXXXXXX
+    SingletonClass instance = SingetonClass::get();  // everything of the SingletonClass getting copied here which defeats the purpose of being singleton
+    instance.printHello();
+    
+    --- and thus to not allow this above, we deleted the copy constructor in public in line no 46
+    
+    std::cin.get();
+}
+
+for classes : 
+=====================
+
+- Now, if static data member or methods are there inside of a class or struct, then it will be sharing memory across all the instances made out of that class/struct. Which means that static member or method will have only ONE instance no matter how many class/struct instances have made out of that class/struct. 
+
+- So, if one of those class/struct instances makes changes to that static member, it will reflect across all the other instances.
+
+- Also, in order for the instances to have access to the static data members, these data members have to be defined outside the class/struct definition as-->
+
+struct Entity
+{
+   static int x, y;
+};
+
+int Entity::x;
+int Entity::y;
+
+- Otherwise, the linker will give linkage error as unresolved external symbols
+
+
+- Similarly, for a static method inside class or struct, this method can be called without a class instance
+
+- Static methods cannot access non-static members. This will give compiler error as illegal use of non-static members
+ 

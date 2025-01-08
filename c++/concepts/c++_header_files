@@ -1,0 +1,29 @@
+------- The Cherno : C++ header files ---------
+
+1. header files do not compile
+
+2. header files only contain function signature; the definition is written inside a translation unit usually named the same as the header file
+
+3. Header Guard: The same header file can be included in multiple cpp files. Since #include preprocessor just copies and pastes the contents of the files, the same header can be accidentally be pasted multiple times resulting in function redefintion. Thus comes the header guard which protects the contents of the header to be included only once.
+
+Earlier in the legacy codes, the following was used as header guard
+#ifndef _LOG_H
+#define _LOG_H
+...
+...
+#endif
+
+Now, most compilers visual studio, gcc, clang, MSVC - all support #pragma once. This preprocessor now acts as header guard and it saves a lot of coding and is quite neat. 
+
+4. Header file "quotes" or <angular brackets>??
+- Angular brackets mean the compiler will search for the target file in the specific include directory set up for specific header files.
+
+- But quotes mean the header file is related to the cpp file and it's relative path is one directory above it. 
+
+Thus quotes indicate relative path and can be used for all the header files but angular brackets have nothing to do with the relative path and can only be used for specific header files. 
+
+However, it is best practice to use angular brackets for include directory header files and quotes for project specific header files.
+
+5. C++ standard library files do not contain extension. This is to distinguish between C std lib and C++ std lib header files  
+
+

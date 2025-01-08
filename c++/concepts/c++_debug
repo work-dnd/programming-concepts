@@ -1,0 +1,9 @@
+---------- The Cherno : C++ Debugging -------------------
+
+1. In Visual Studio, Debug-->Memory View we can see the memory map, where the uninitialized variable will show 0Xcccccccc (hex). It means Uninitialized Stack Memory.
+
+Now this is specifically done in debug setting, not in th release setting of the compiler for us to figure out what really is wrongin case of an error 
+
+2. Provide &<variable name>, and in the memory map you will see where in the memory the variable is located and what it's current value is (lowest byte first order)
+
+3.

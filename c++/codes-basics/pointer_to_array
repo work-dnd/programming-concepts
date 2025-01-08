@@ -1,0 +1,50 @@
+============== pointer to array
+
+#include <iostream>
+
+int main()
+{
+    int a[3] = {1,2,3};
+    
+    for(int i=0; i<3; i++)
+        std::cout << *(a+i) << " "; // array itself is a pointer to the base address
+        
+    /*
+       //This can also be done//
+     int* p = a;
+     for(int i=0; i<3; i++)
+        std::cout << *(p+i) << " ";
+    */
+     
+    
+    return 0;
+}
+
+---> 1, 2, 3
+
+================== int (*p)[3] --> pointer to an array of 3 integers, that's why incrementing p moves forward to next element in the array
+
+int main()
+{
+    int a[3] = {1,6,3};
+    int (*p)[3];
+    p = &a;
+    
+    for(int i=0; i<3; i++)
+        std::cout << *(*p + i) << " ";
+    
+    return 0;
+}
+
+==================int* p[3] --> array of 3 different "pointers to integers", so dereferencing and incrementing p[0] moves forward to next integer
+int main()
+{
+    int a=1, b=2, c=6;
+    int* p[3] = {&a, &b, &c};
+
+    
+    for(int i=0; i<3; i++)
+        std::cout << *p[i] << " ";
+    
+    return 0;
+}

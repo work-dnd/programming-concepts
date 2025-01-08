@@ -1,0 +1,14 @@
+============= sort string using hashing
+
+MAX_CHAR=26
+
+def sort_string(str):
+    char_count = [0] * MAX_CHAR
+    for ch in str:
+        char_count[ord(ch) - ord('a')]+= 1 --> 11120000... upto 26 chars
+        
+    for i in range(MAX_CHAR):
+        for _ in range(char_count[i]):
+            print(chr(i+ord('a')), end="")
+    
+sort_string("ddbac")

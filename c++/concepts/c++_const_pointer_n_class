@@ -1,0 +1,46 @@
+============ The Cherno : CONST in the context of pointers and classes ====================
+
+
+- "const" is a promise of making a constant declarartion. But that promise can be broken
+e.g.
+
+const int MAX_AGE = 90; # promise
+Now,
+int* a =  new int;
+a = &MAX_AGE; XXXX error (invalid conversion from const int* to int*)  --> since at the end of the day an integer is nothing but a pointer address holding an int. Since MAX_AGE is declared  const, it now became a const int*
+
+However,
+a = (int*) &MAX_AGE; ---> Now the const promise is BROKEN by casting the const int* to int*
+
+Derefer the pointer now and change the content
+*a = 2; --> IT IS POSSIBLE
+
+So, indeed the CONST is just a promise and it can be broken if the programmer really wants to
+
+==============================================================================
+
+const pointer --> different declarartion --> different meaning
+
+- const int* a = new int; or int const* a; [ both are same ]
+-- meaning CONTENT is CONST, ADDRESS is MODIFIABLE i.e content of this pointer address is declared as const and down the line we cannot derefer this pointer and modify the value
+
+e.g.
+Now, 
+*a = 2;  ---> will give error (assignment of read-only location * a)
+
+But,
+a = (int*) &MAX_AGE; --> this is possible because the memory address a is pointing to 
+// can still be changed.
+
+However, if declared as 
+int* const a = new int; --> meaning ADDRESS is CONST, CONTENT is MODIFIABLE
+
+Now,
+a = (int*) &MAX_AGE; --> XXX error (assignment of read-only variable a)NOT POSSBILE (coz the pointer pointing to the memory address is declared as const)
+But, 
+*a = 2; --> THIS IS POSSIBLE which means content of that memory address can still be modified 
+
+
+
+
+

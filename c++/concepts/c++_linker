@@ -1,0 +1,15 @@
+===== The Cherno : C++ Linker Notes =======
+
+1. Compiler compiles multiple cpp files of a project into translation units as object files, but these cannot interact with each other unless there is linker
+
+2. Even for single cpp fie the application needs to know where the entry point is i.e. where does the main function start as preprocessor pastes all the preprocessing file contents into the cpp file during compilation
+
+3. Error codes has first letters for compiler errors as C<numeric error code> for syntax errors and LNK<numeric error code> for linker errors 
+
+4. C++ will get linking error if there are return type mismatch, signature mismatch, argument mismatch with the declared functions
+
+5. It won't get linking error if the any file of function has not been called; if it is implemented inside static fucntion but the function is never called it won't get linking error  
+
+6. The best practice is to keep the declarations inside header files and definitions inside the translation unit(the cpp file) for that header; otherwise linker gives error of "one or more defined symbols"
+
+   

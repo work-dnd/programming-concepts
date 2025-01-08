@@ -1,0 +1,76 @@
+=========The Cherno : Enum ==========
+
+- Enum is an INTEGER that can be a bunch of variables grouped together, holding some value. 
+
+- If no value is specified for the variables, then by default, enum is a 32-bit integer depending on the compiler and the 1st varibale takes the value to be 0, and rest will be incremented by 1. E.g.
+
+enum Example
+{
+   A, B, C
+};
+
+which means A=0,B=1,C=2
+
+- However, if values are given, then
+
+enum Example
+{
+ A =5, B= 2, C=7
+};
+
+- If 1st value is declared, rest will be incremented by 1 
+
+- If some integer type is to be imposed,
+
+enum Example : unsigned char  (# unsigned char is 8 bit (for less memory) so a valid enum 
+type, REMEMEBER : enum is an INTEGER only, cant be float or double )
+{ 
+   A, B, C
+};
+
+
+usage in main
+
+
+int main(){
+
+Example value = B;
+
+std::cin.get();
+}
+
+
+- Also, if now value can't be assigned to any other random variable apart from the valid ones from enum Example.
+
+- With enum codes are pretty readable
+
+-Think of Logging states in a log class - error, warning, info ---These can be perfect candidates for enum which by default will have constant states 0, 1, and 2 
+
+
+class Log{
+
+public:
+enum Level : unsigned char
+{
+  LevelError = 0, LevelWarning, LevelInfo
+
+};
+
+private:
+
+  Level m_LogLevel = LevelInfo;
+  
+  
+public:
+   void setLevel(Level level){
+   
+   	m_logLevel = level;
+   } 
+};
+
+int main(){
+
+    Log log;
+    log.setLevel(Log::LevelError);
+
+}

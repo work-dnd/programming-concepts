@@ -1,0 +1,36 @@
+======== Remove duplicate numbers from an array/vector =============
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <vector>
+
+void remove_duplicates(const std::vector<unsigned int>& vec, std::vector<unsigned int>& other)
+{
+    other.emplace_back(vec[0]);
+    
+    for(unsigned int i=1; i<vec.size(); i++)
+    {
+        if(vec[i] != vec[i-1])
+            other.emplace_back(vec[i]);
+        else
+            if(i>1)
+                other.pop_back();
+    }
+}
+
+
+
+int main() {
+    // Write C++ code here
+    std::vector<unsigned int> vec = {1,2,2,3,4,5,5,3};
+    std::vector<unsigned int> other;
+    other.reserve(8);
+
+    remove_duplicates(vec, other);
+    other.shrink_to_fit();
+    
+    for(auto& i : other)
+        std::cout << i << ' ';
+
+    return 0;
+}

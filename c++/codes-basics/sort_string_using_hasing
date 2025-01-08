@@ -1,0 +1,27 @@
+//============= sorting string : O(MAX_CHAR) as hashing is used
+
+
+#include <iostream>
+
+static unsigned int MAX_CHAR = 26;
+
+void sort_string(const std::string& str)
+{
+    unsigned int count_char[MAX_CHAR] = {0};
+    
+    for(int i=0; i<str.length(); i++)
+        count_char[str[i] - 'a']++;  //----> 1001000110000000010000000
+    
+    for(int i=0;i<MAX_CHAR; i++)
+    {
+        for(int j=0; j<count_char[i]; j++)
+            std::cout << (char)('a'+i);
+    }
+}
+
+int main() {
+    std::string input="disha";
+    sort_string(input);
+
+    return 0;
+}

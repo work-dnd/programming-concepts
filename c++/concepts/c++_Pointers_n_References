@@ -1,0 +1,11 @@
+======== The Cherno : Pointers and References ========
+
+- Pointers are integers that hold the memory addressof the target varibles they are pointing to
+
+- So Pointers are real variables
+
+- However, References are like aliases, they are not really a variable.
+
+- Whenever you set a reference, you have to assign some variable to it
+
+-  

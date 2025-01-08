@@ -1,0 +1,25 @@
+================= string reverse using recursion
+
+
+#include <iostream>
+#include <string>
+
+void reverse_string(const std::string& str, const unsigned int& len, const int& index)
+{
+    if(index == len)
+        return;
+    char ch = str[index];
+    reverse_string(str, len, index+1);
+    std::cout << ch;
+}
+
+
+int main()
+{
+    std::string str= "reverse";
+    unsigned int len = str.length();
+    std::string reversed;
+    reverse_string(str, len, 0);
+    std::cout << std::endl;
+    return 0;
+}

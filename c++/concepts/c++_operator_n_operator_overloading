@@ -1,0 +1,76 @@
+=================== The Cherno : operator and operator overloading ===================
+
+- operators are nothing but functions
+- new and delete are also operators
+
+- lets say a struct vector2 has add and multiply functions, but instead of writing add() and multiply(), we wanna use symbols + ans *
+to do so ...
+
+
+#include<iostream>
+
+// Vector2 is chosen to be a structure because the members are chosen to be public
+
+struct Vector2()
+{
+
+	float x, y;
+	
+	//constructor
+	Vector2(float x, float y)
+			: x(x), y(y) {}
+	
+	Vector2 Add(const Vector2& other) const     //const method as method is not going to modify the values x and y
+	{
+		return Vector2(x + other.x, y + other.y); 
+	}
+	
+	// to overload Add() with + operator
+	
+	Vector2 operator+ (const Vector2& other) const 
+	{
+		return Add(other);
+	} 
+	
+	
+	// This above can be written the other way round (check the video), but cherno prefers the above way 
+	
+	
+	Vector2 Multiply(const Vector2& other) const     //const method as method is not going to modify the values x and y
+	{
+		return Vector2(x * other.x, y * other.y); 
+	}
+	
+	// to overload Multiply() with + operator
+	
+	Vector2 operator* (const Vector2& other) const 
+	{
+		return Multiply(other);
+	} 
+	
+	// to directly be able to send Vector2 to std::cout, an overloading of << operator is required
+	std::cout << result2 << std::endl;  // this won't compile unless overloading is used 
+	
+	
+	std::cin.get();
+
+}; 
+
+
+
+int main()
+{
+	Vector2 position(4.0f, 4.0f);
+	Vector2 speed(0.5f, 1.5f);
+	Vector2 powerup(1.1f, 1.1f);
+	
+	
+	// we can do -- which is less readable
+	Vector2 result = position.Add(speed.Multiply(powerup));
+
+	// instead we would want to write
+	Vector2 result2 = position + speed * powerup;  //here comes operator overloading
+	
+
+}
+

@@ -1,0 +1,20 @@
+----------- Important C++ knowledge from The Cherno (Yan Chernikov)----
+
+---- C++ : How compiler works --------
+
+1. #include, #define,#if-#endif -- all these preprocessors just copy the target file and paste inside the current .cpp file 
+
+2. Abstract Syntax Tree 
+
+3. Constant Folding -- runtime value comparison
+
+4. header files themselves do not get compiled
+
+5. Compilation --> preprocess --> .obj ---> linker ---> execuatble
+
+6. C++ has nothing to do with Files; this is in contrast with JAVA where class names have to be tied with filenames
+
+7. And thus the compiler treats every .cpp file as a translation unit that results in an object file first during compilation
+
+8. In Debug mode of compilation the compiler does not use any optimization but in Release mode it does 
+

@@ -1,0 +1,40 @@
+============== The Cherno : Ternery Operator (? :) ==========
+
+- used instead of if-else
+
+#include<iostream>
+#include<string>
+
+    static int s_level = 5;
+    static int speed = 10;
+
+int main()
+{
+    
+    //let's say
+    if(s_level < 5)
+    	speed = 6;
+    else
+    	speed = 10;
+    	
+    //instead we can write using ternery operator
+    speed = s_level < 5 ? 6 : 10;
+    
+    // but even better example 
+    std::string rank = s_level > 10 : "Master" : "Beginner";
+    
+    // here we did not have to create any temporary intermediate string for the rank, there is something called return value optimization (future video)
+    // had we not used ternary operator
+    
+    std::string rank; //temporary string creation first
+    if(s_level > 10)
+    	rank = "Master"; // then updating based on condition ---> slower code 
+    else
+    	rank = "Beginner";
+} 
+
+-- nesting of ternery operator is possible --- but better to AVOID
+
+int speed = s_level >5 && s_level < 100 ? s_level > 10 ? 15 : 10 : 5;
+
+
